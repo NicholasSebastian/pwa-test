@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Test</title>
+  <style>
+    #install-button {
+      cursor: pointer;
+      background-color: #555DFA;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      display: block;
+      margin: calc(50vh - 22px) auto 12px auto;
+      padding: 10px 20px;
+      font-size: 20px;
+    }
+    .log {
+      font-family: Arial, Helvetica, sans-serif;
+      text-align: center;
+    }
+  </style>
+  <!-- STEP 1: Setup the manifest.json -->
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <button id="install-button">Install</button>
+  <script>
+    // STEP 2: Listen for the 'beforeinstallprompt' event.
+    window.addEventListener("beforeinstallprompt", e => {
+      e.preventDefault();
+      const installButton = document.getElementById("install-button");
+      installButton.addEventListener("click", () => {
+        // STEP 3: Prompt and pray the user chooses to install.
+        e.prompt();
+        e.userChoice.then(response => {
+          const accepted = response.outcome === "accepted";
+          const message = accepted ? "App Installed" : "App did not Install";
+          installButton.insertAdjacentHTML("afterend", `<div class="log">${message}</div>`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

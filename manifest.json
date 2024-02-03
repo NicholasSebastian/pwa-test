@@ -1,0 +1,15 @@
+{
+  "name": "PWA Test",
+  "short_name": "PWA Test",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "https://www.google.com/search?q=corgi",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
